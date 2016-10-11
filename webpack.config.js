@@ -21,6 +21,8 @@ const CSS_LOADERS = {
   scss: '!sass-loader'
 };
 
+const ASSETS_DIR = "https://storage.googleapis.com/samrad-samelie/www-assets/assets/"
+
 const ENV_VARS = {
   APP_HOST: '"https://samelie.com/"',
   APP_DOMAIN: '"/"',
@@ -82,33 +84,36 @@ module.exports = env => {
     bail: env.prod,
     module: {
       loaders: [{
-        test: /\.svg$/,
-        loader: 'svg-inline'
-      }, {
-        loader: 'url-loader?limit=100000',
-        test: /\.(gif|jpg|png)$/
-      }, {
-        loader: 'url-loader?limit=100000',
-        test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-        include: [`${join(constants.ASSETS_DIR, '/font/')}`]
-      }, {
-        test: /\.json$/,
-        loader: 'json'
-      }, {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-      }, {
-        test: /\.(glsl|vert|frag)$/,
-        loader: 'shader',
-        exclude: /node_modules/
-      }/*, {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: "style-loader!css-loader!postcss-loader?pack=cleaner"
-      }*/].concat(stylesLoaders()),
+          test: /\.svg$/,
+          loader: 'svg-inline'
+        }, {
+          loader: 'url-loader?limit=100000',
+          test: /\.(gif|jpg|png)$/
+        }, {
+          loader: 'url-loader?limit=100000',
+          test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
+          include: [`${join(constants.ASSETS_DIR, '/font/')}`]
+        }, {
+          test: /\.json$/,
+          loader: 'json'
+        }, {
+          test: /\.js$/,
+          loader: 'babel',
+          exclude: /node_modules/,
+        }, {
+          test: /\.(glsl|vert|frag)$/,
+          loader: 'shader',
+          exclude: /node_modules/
+        }
+        /*, {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                loader: "style-loader!css-loader!postcss-loader?pack=cleaner"
+              }*/
+      ].concat(stylesLoaders()),
     },
     sassLoader: {
+      assetsUrl:`"${ASSETS_DIR}"`,
       includePaths: [
         join(constants.SRC_DIR, '/base'),
         join(constants.SRC_DIR, '/base/vars')
@@ -118,9 +123,13 @@ module.exports = env => {
       new webpack.DefinePlugin({
         'process.env': ENV_VARS
       }),
-      new HtmlWebpackPlugin({
+      ifDev(new HtmlWebpackPlugin({
         template: './index.html'
-      }),
+      })),
+      ifProd(new HtmlWebpackPlugin({
+        assetsUrl: `"${ASSETS_DIR}`,
+        template: './index.ejs', // Load a custom template (ejs by default see the FAQ for details)
+      })),
       ifProd(new ExtractTextPlugin('[name]-[hash].css', {
         allChunks: true
       })),

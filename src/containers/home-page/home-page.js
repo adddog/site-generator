@@ -53,6 +53,7 @@ componentDidMount() {
     console.log(copy);
     return (
       <div className="o-page u-flex-center u-flex-stack">
+        <div className="test"></div>
         <div className="home">
           <h1 className="home__title">{copy.pages.home.title}</h1>
           <p className="home__desc">{ReactHtmlParser(copy.pages.home.titleDesc)}</p>
