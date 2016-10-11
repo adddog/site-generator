@@ -37,6 +37,7 @@ componentDidMount() {
     })
     let _copy = `${process.env.REMOTE_ASSETS_DIR}json/copy.json?z=${Math.random()}`
     fetchJson(_copy).then(data => {
+      console.log(data);
         this.setState({
             copy: data
             })
@@ -51,11 +52,14 @@ componentDidMount() {
     }
     console.log(copy);
     return (
-      <div className="o-page">
-        <MarsPlanet/>
-        <div className="o-page home">
+      <div className="o-page u-flex-center u-flex-stack">
+        <div className="home">
           <h1 className="home__title">{copy.pages.home.title}</h1>
           <p className="home__desc">{ReactHtmlParser(copy.pages.home.titleDesc)}</p>
+          <p className="home__contact">{ReactHtmlParser(copy.pages.home.contactEmail)}</p>
+        </div>
+        <h2 className="projects__intro">{copy.pages.home.projects.intro}</h2>
+        <div className="projects">
           {this.state.projects}
         </div>
       </div>

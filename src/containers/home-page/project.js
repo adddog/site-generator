@@ -3,14 +3,11 @@ import ReactHtmlParser from 'react-html-parser';
 
 const PROJECT = (props) => {
 	return (
-		<div key={props.id} className="project" >
-            <a className="project__title home__link"href={`${process.env.APP_HOST}${props.href}`}>
-                <img className="project__image" src={`${process.env.REMOTE_ASSETS_DIR}images/${props.id}.gif`}></img>
-                <div className="title__text__wrapper">
-                    <span className="title__text">{props.title}</span>
-                </div>
+		<div key={props.projectId} className="project" >
+            <a className="project__title project__link"href={`${props.href}`} target="_blank">
+            {props.projectName}
             </a>
-            <div className="project__desc">{props.projectNote}</div>
+            <div className="project__desc">{props.projectDesc}</div>
           </div>
 		)
 }

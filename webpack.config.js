@@ -22,10 +22,10 @@ const CSS_LOADERS = {
 };
 
 const ENV_VARS = {
-  APP_HOST: '"https://mars.wtf/"',
+  APP_HOST: '"https://samelie.com/"',
   APP_DOMAIN: '"/"',
-  ASSETS_DIR: '"https://storage.googleapis.com/samrad-mars/www-assets/assets/"',
-  REMOTE_ASSETS_DIR: '"https://storage.googleapis.com/samrad-mars/www-assets/assets/"'
+  ASSETS_DIR: '"https://storage.googleapis.com/samrad-samelie/www-assets/assets/"',
+  REMOTE_ASSETS_DIR: '"https://storage.googleapis.com/samrad-samelie/www-assets/assets/"'
 }
 
 
