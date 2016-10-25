@@ -50,7 +50,7 @@ componentDidMount() {
     if(!copy){
       return (<div></div>)
     }
-    console.log(copy);
+    let pastOps = Project(copy.pages.home.pastOps)
     return (
       <div className="o-page u-flex-center u-flex-stack">
         <div className="test"></div>
@@ -62,6 +62,9 @@ componentDidMount() {
         <h2 className="projects__intro">{copy.pages.home.projects.intro}</h2>
         <div className="projects">
           {this.state.projects}
+        </div>
+        <div className="projects">
+          {pastOps}
         </div>
       </div>
     );
