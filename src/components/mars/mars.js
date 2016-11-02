@@ -10,10 +10,20 @@ import SceneApp from './experience/SceneManager';
 
 class Mars extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      loadingProgress:0
+    }
+  }
+
   componentDidMount() {
     const { browser } = this.props;
     GL.init(this.refs.glCtx)
     this.scene = new SceneApp();
+    this.scene.on('progress', (p)=>{
+      this.setState({loadingProgress:p})
+    })
     this.scene.on('loaded', ()=>{
       this.refs.loading.classList.add('is-hidden')
     })
@@ -28,7 +38,7 @@ class Mars extends Component {
     return (
       <div ref="mars-exp" className="o-page mars-exp">
         <div ref="loading" className="mars-loading">
-          <span >LOADING</span>
+          <span >LOADING {this.state.loadingProgress}</span>
         </div>
         <canvas ref="glCtx"></canvas>
       </div>

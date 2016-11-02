@@ -51,6 +51,7 @@ export default class SceneManager {
       }).on('error', (error) => {
         console.error(error);
       }).on('progress', (p) => {
+        Emitter.emit('exp:progress', p)
         //console.log('Progress : ', p);
       }).on('complete', this._onAssetsLoaded.bind(this))
       .start();
