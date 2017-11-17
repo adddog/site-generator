@@ -1,0 +1,21 @@
+{
+	"pages":{
+		"home":{
+			"title":"SAM ELIE",
+			"titleDesc":"",
+			"contactEmail":"sam[at]add.dog",
+
+			"projects":{
+				"intro":"Operations",
+				"pastOps":"Past operations"
+			},
+
+			"pastOps":{
+				"projectId":"stinkdigital",
+				"href":"https://samelie.com/stinkdigital",
+				"projectName":"Stinkdigital",
+				"projectDesc":"Past operations"
+			}
+		}
+	}
+}
