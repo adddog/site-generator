@@ -1,3 +1,3 @@
-TO MAKE A NEW PROJECT, BRANCH FROM MASTER
+MARS.WTF
 
-Remember to change webpack env vars and the bin/copy_dist_to.sh
+generated with [site-generator](https://github.com/adddog/site-generator)
